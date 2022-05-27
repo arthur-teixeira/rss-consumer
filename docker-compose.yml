@@ -18,6 +18,8 @@ services:
     build: .docker/postgres
     container_name: rss-consumer-db
     restart: always
+    ports:
+      - 5432:5432
     tty: true
     volumes:
       - .docker/dbdata:/var/lib/postgresql/dbdata
