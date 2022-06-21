@@ -1,20 +1,26 @@
 import { AppDataSource } from "./data-source";
 import { CronJob } from "cron";
-import { getProviderController } from "./factories/controllerFactory";
+import {
+  getParserService,
+  getProviderController,
+} from "./factories/controllerFactory";
+import { Provider } from "./entity/Provider";
 
 const providerController = getProviderController(AppDataSource);
+const parserService = getParserService();
 
 AppDataSource.initialize()
-  .then(async () => {
-    new CronJob(
-      "* * * * * *",
-      async function () {
-        const providers = await providerController.getProviders();
-        console.log(providers);
-      },
-      null,
-      true,
-      "America/Los_Angeles"
-    );
-  })
+  .then(async () => bootstrap())
   .catch((error) => console.log(error));
+
+const bootstrap = () => {
+  new CronJob(
+    "*/5 * * * * *",
+    async function () {
+      providerController.run();
+    },
+    null,
+    true,
+    "America/Los_Angeles"
+  );
+};
