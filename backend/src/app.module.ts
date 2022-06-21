@@ -3,7 +3,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Provider } from './entity/Provider';
 import { ProviderController } from './controllers/provider/provider.controller';
 import { ProviderService } from './services/provider/provider.service';
-import { BaseRepositoryService } from './services/base-repository/base-repository.service';
 
 @Module({
   imports: [
@@ -23,6 +22,6 @@ import { BaseRepositoryService } from './services/base-repository/base-repositor
     TypeOrmModule.forFeature([Provider]),
   ],
   controllers: [ProviderController],
-  providers: [ProviderService, BaseRepositoryService],
+  providers: [ProviderService],
 })
 export class AppModule {}
