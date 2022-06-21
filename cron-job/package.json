@@ -13,6 +13,7 @@
       "global": "^4.4.0",
       "pg": "^8.4.0",
       "reflect-metadata": "^0.1.13",
+      "rss-to-json": "^2.0.2",
       "typeorm": "0.3.6"
    },
    "scripts": {
