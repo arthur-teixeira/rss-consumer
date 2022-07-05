@@ -12,7 +12,13 @@ export default class FeedControllerImpl implements FeedController {
   async saveFeed(feed: Feed): Promise<void> {
     const articles = this.buildArticleEntity(feed);
     articles.forEach(async (article) => {
-      await this.articleRepository.save(article);
+      try {
+        await this.articleRepository.save(article);
+      } catch (error) {
+        if (!error.message.includes("duplicate key")) {
+          console.error(error);
+        }
+      }
     });
   }
 

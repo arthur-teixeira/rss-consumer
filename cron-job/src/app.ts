@@ -19,11 +19,10 @@ const bootstrap = () => {
       try {
         const feeds = await providerController.getArticlesFromProviders();
         feeds.forEach(async (feed) => {
-          // console.log("savind feed ", feed);
           await feedController.saveFeed(feed);
         });
       } catch (err) {
-        console.error(err);
+        console.log(typeof err);
       }
     },
     null,
