@@ -1,0 +1,8 @@
+backend recebe request com id do artigo e a classificação, positiva ou negativa
+
+salva no banco de dados o id com a classificação em uma tabela
+
+no job, antes de salvar os feeds novamente, treina o algoritmo com os dados da tabela
+assumindo que o job rodará sempre, adicionar flag na tabela que indica se aquele dado já foi utilizado para treino e só utilizar os dados novos
+
+ao salvar os novos feeds, adicionar uma classificação automática a eles, que pode ser alterada manualmente

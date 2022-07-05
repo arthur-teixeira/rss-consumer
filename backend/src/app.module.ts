@@ -3,6 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Provider } from './entity/Provider';
 import { ProviderController } from './controllers/provider/provider.controller';
 import { ProviderService } from './services/provider/provider.service';
+import { ClassifierController } from './controllers/classifier/classifier.controller';
+import { Classification } from 'entity/Classification';
 
 @Module({
   imports: [
@@ -15,13 +17,13 @@ import { ProviderService } from './services/provider/provider.service';
       database: 'rss',
       synchronize: true,
       logging: false,
-      entities: [Provider],
+      entities: [Provider, Classification],
       migrations: [],
       subscribers: [],
     }),
-    TypeOrmModule.forFeature([Provider]),
+    TypeOrmModule.forFeature([Provider, Classification]),
   ],
-  controllers: [ProviderController],
+  controllers: [ProviderController, ClassifierController],
   providers: [ProviderService],
 })
 export class AppModule {}
