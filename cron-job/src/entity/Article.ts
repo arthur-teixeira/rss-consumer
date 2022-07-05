@@ -1,10 +1,26 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Article {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id?: number;
 
-    @Column()
-    origin: string;
+  @Column()
+  title: string;
+
+  @Column({
+    nullable: true,
+  })
+  description?: string;
+
+  @Column()
+  link: string;
+
+  @Column({
+    nullable: true,
+  })
+  content: string;
+
+  @Column()
+  published: Date;
 }

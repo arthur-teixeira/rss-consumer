@@ -1,13 +1,12 @@
 import { AppDataSource } from "./data-source";
 import { CronJob } from "cron";
 import {
-  getParserService,
+  getFeedController,
   getProviderController,
 } from "./factories/controllerFactory";
-import { Provider } from "./entity/Provider";
 
 const providerController = getProviderController(AppDataSource);
-const parserService = getParserService();
+const feedController = getFeedController(AppDataSource);
 
 AppDataSource.initialize()
   .then(async () => bootstrap())
@@ -17,7 +16,15 @@ const bootstrap = () => {
   new CronJob(
     "*/5 * * * * *",
     async function () {
-      providerController.run();
+      try {
+        const feeds = await providerController.getArticlesFromProviders();
+        feeds.forEach(async (feed) => {
+          // console.log("savind feed ", feed);
+          await feedController.saveFeed(feed);
+        });
+      } catch (err) {
+        console.error(err);
+      }
     },
     null,
     true,

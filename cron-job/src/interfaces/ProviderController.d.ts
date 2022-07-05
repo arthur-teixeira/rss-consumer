@@ -1,5 +1,4 @@
-import { Provider } from "../entity/Provider";
-
+import Feed from "../domain/Feed";
 export default interface ProviderController {
-  getArticlesFromProviders(): void;
+  getArticlesFromProviders(): Promise<Feed[]>;
 }

@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
+import { Article } from "./entity/Article";
 import { Provider } from "./entity/Provider";
 
 export const AppDataSource = new DataSource({
@@ -11,7 +12,7 @@ export const AppDataSource = new DataSource({
   database: "rss",
   synchronize: true,
   logging: false,
-  entities: [Provider],
+  entities: [Provider, Article],
   migrations: [],
   subscribers: [],
 });

@@ -1,8 +1,10 @@
 import { DataSource } from "typeorm";
 import ProviderControllerImpl from "../controllers/ProviderControllerImpl";
-import ParserService from "../interfaces/ParserService";
+import ParserController from "../interfaces/ParserController";
 import ProviderController from "../interfaces/ProviderController";
-import ParserServiceImpl from "../services/ParserServiceImpl";
+import ParserControllerImpl from "../controllers/ParserControllerImpl";
+import FeedController from "../interfaces/FeedController";
+import FeedControllerImpl from "../controllers/FeedControllerImpl";
 
 export const getProviderController = (
   appDataSource: DataSource
@@ -10,6 +12,12 @@ export const getProviderController = (
   return new ProviderControllerImpl(appDataSource);
 };
 
-export const getParserService = (): ParserService => {
-  return new ParserServiceImpl();
+export const getParserController = (): ParserController => {
+  return new ParserControllerImpl();
+};
+
+export const getFeedController = (
+  appDataSource: DataSource
+): FeedController => {
+  return new FeedControllerImpl(appDataSource);
 };
